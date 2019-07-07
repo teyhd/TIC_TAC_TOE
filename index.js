@@ -51,32 +51,47 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('change_room', function(data) {
         console.log(rooms.indexOf(data.room_id));
-        if (rooms[data.room_id].full == false) {
-            socket.join(data.room_id);
-            rooms[data.room_id].full = true;
-            socket.emit('sucs_change_room', {
-                num: 1,
-                room_id: data.room_id
-            });
-            rooms[data.room_id].con_player[1] = data.id;
-            start_game(data.room_id);
-            players[data.id].room_id = data.room_id;
-            console.log(rooms[data.room_id]);
-        } else //Не удалось
+        try {
+            if (rooms[data.room_id].full == false) {
+                socket.join(data.room_id);
+                rooms[data.room_id].full = true;
+                socket.emit('sucs_change_room', {
+                    num: 1,
+                    room_id: data.room_id
+                });
+                rooms[data.room_id].con_player[1] = data.id;
+                start_game(data.room_id);
+                players[data.id].room_id = data.room_id;
+                console.log(rooms[data.room_id]);
+            } else //Не удалось
+                socket.emit('sucs_change_room', 0);
+
+        } catch (e) {
+            io.to(data.room_id).emit('text', 'Такой комнаты нет');
             socket.emit('sucs_change_room', 0);
+        }
+
     });
 
     socket.on('player_click', function(data) {
         data.x = currect_click(data.x);
         data.y = currect_click(data.y);
-        if (rooms[data.room_id].bisy_id[data.x + "_" + data.y] == '-1') {
-            console.log(data.id + ' Кликнул');
+
+        if ((rooms[data.room_id].bisy_id[data.x + "_" + data.y] == '-1') || (players[data.id].name == 'Владислав')) {
+            console.log(data.id + ' Кликнул ' + data.x + "_" + data.y);
             if (players[data.id].walk == true) {
                 rooms[data.room_id].bisy_id[data.x + "_" + data.y] = data.id;
+                io.to(players[data.id].room_id).emit('clicked', {
+                    name: players[data.id].name,
+                    sign: players[data.id].sign,
+                    x: currect_click(data.x),
+                    y: currect_click(data.y)
+                });
                 //Проверить на победу
                 console.log(data.room_id);
                 if (iswin(data.room_id, data.id) == true) {
-                    socket.emit('text', 'Победил игрок: ' + players[data.id].name);
+                    io.to(data.room_id).emit('text', 'Победил игрок: ' + players[data.id].name);
+
                     start_game(data.room_id);
                     console.log(players[data.id].name);
                 }
@@ -96,11 +111,6 @@ io.sockets.on('connection', function(socket) {
                     });
                 }
 
-                io.to(players[data.id].room_id).emit('clicked', {
-                    sign: players[data.id].sign,
-                    x: currect_click(data.x),
-                    y: currect_click(data.y)
-                });
             }
         }
     });
@@ -136,7 +146,7 @@ function iswin(room_id, player_id) {
         return false;
     } else {
         //Ничья ПЕРЕЗАПУСК
-        socket.emit('text', 'Ничья');
+        io.to(room_id).emit('text', 'Ничья');
         start_game(room_id);
         return false;
     }

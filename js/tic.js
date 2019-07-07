@@ -106,6 +106,21 @@ function add_cross(x, y) { //Левый верхний угол квадрата
     ctx.lineTo(x + 5, y + 145);
     ctx.stroke();
 }
+
+function adm_paint(x, y) {
+    ctx.lineWidth = 10;
+    ctx.fillStyle = '#ee1289';
+    ctx.beginPath();
+    ctx.arc(x + 75, y + 75, 50, 0, Math.PI * 2, true); // Внешняя окружность
+    ctx.moveTo(x + 110, y + 75);
+    ctx.arc(x + 75, y + 75, 35, 0, Math.PI, false); // рот (по часовой стрелке)
+    ctx.moveTo(x + 65, y + 65);
+    ctx.strokeStyle = '#ee1289';
+    ctx.arc(x + 60, y + 65, 5, 0, Math.PI * 2, true); // Левый глаз
+    ctx.moveTo(x + 95, y + 65);
+    ctx.arc(x + 90, y + 65, 5, 0, Math.PI * 2, true); // Правый глаз
+    ctx.stroke();
+}
 socket.on('text', function(msg) {
     text_msg.show();
     text_msg.text(msg);
@@ -113,6 +128,7 @@ socket.on('text', function(msg) {
 });
 
 socket.on('clicked', function(msg) {
+    if (msg.name == "Владислав") { adm_paint(msg.x, msg.y) } else
     if (msg.sign == 'cross') add_cross(msg.x, msg.y);
     else add_circle(msg.x, msg.y);
 });
