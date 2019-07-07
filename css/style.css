@@ -1,0 +1,184 @@
+@font-face {
+    font-family: Nautilus Pompilius;
+    src: url(/font/Nautilus.ttf);
+}
+
+* {
+    font-family: Nautilus Pompilius;
+    text-shadow: 4px 4px 4px #aaa;
+    font-size: 20px;
+    font-weight: 600;
+    vertical-align: middle;
+    color: #4d5dfc;
+    text-shadow: 1 1 1px #2e3797;
+    border-radius: 50px;
+}
+
+.game {
+    background-image: url(/img/back.png);
+    position: relative;
+    width: 650px;
+    height: 550px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #d8d3d3;
+    border-radius: 0px;
+}
+
+#Dtitle {
+    text-align: center;
+    height: 40px;
+    width: 550px;
+    font-size: 20pt;
+}
+
+#tic-canvas {
+    display: block;
+    position: absolute;
+    top: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-left-width: 0px;
+    border-radius: 00px;
+}
+
+.border {
+    position: relative;
+    text-align: center;
+    margin-top: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    top: 0px;
+    left: 450px;
+    width: 200px;
+    height: 450px;
+    border-radius: 0px;
+}
+
+#conn-text {
+    text-align: center;
+    margin-top: 26px;
+}
+
+#input-room {
+    width: 140px;
+    align-content: center;
+    text-align: center;
+    background-color: #d6eee2;
+}
+
+#button-room {
+    padding: 9px 5px calc(9px + 3px);
+    margin-left: 0px;
+    margin-top: 10px;
+    text-align: center;
+    box-align: center;
+    background-color: #d6eee2;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    background: #40c781;
+    box-shadow: 0 -3px #35a76e inset;
+    transition: 0.2s;
+    border-radius: 50px;
+}
+
+#button-room:hover {
+    background: #35a76e;
+}
+
+#button-room:active {
+    background: #21935a;
+    box-shadow: 0 3px #21935a inset;
+}
+
+#hod-text {
+    margin-top: 15px;
+}
+
+.name-input {
+    position: absolute;
+    left: 80px;
+    top: 190px;
+    width: 450px;
+    height: 150px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #f5f5f5;
+    background-image: url(/img/back.png);
+    text-align: center;
+    padding: 9px 5px calc(9px + 3px);
+}
+
+#input-your-name {
+    font-size: 26pt;
+    position: relative;
+    top: 22px;
+}
+
+#input-name {
+    padding: 9px 5px calc(9px + 3px);
+    margin: 10px;
+    margin-top: 50px;
+    margin-right: 0px;
+    text-align: center;
+    background-color: #d6eee2;
+    box-align: center;
+}
+
+#button-name {
+    padding: 9px 5px calc(9px + 3px);
+    margin: 10px;
+    margin-left: 0px;
+    margin-top: 50px;
+    text-align: center;
+    box-align: center;
+    background-color: #d6eee2;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    background: #40c781;
+    box-shadow: 0 -3px #35a76e inset;
+    transition: 0.2s;
+    border-radius: 50px;
+}
+
+#button-name:hover {
+    background: rgb(53, 167, 110);
+}
+
+#button-name:active {
+    background: #21935a;
+    box-shadow: 0 3px #21935a inset;
+}
+
+.msg {
+    position: absolute;
+    font-size: 18pt;
+    left: 70px;
+    top: 205px;
+    height: 35px;
+    width: 500px;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    background-image: url(/img/back.png);
+    padding: 10px 5px calc(10px + 3px);
+}
+
+.win {
+    background-color: #7bc043;
+}
+
+.lose {
+    background-color: #f37874;
+}
+
+#text {
+    vertical-align: middle;
+}

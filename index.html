@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Крестики-Нолики</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="game">
+        <div id="Dtitle">Крестики-Нолики</div>
+        <div class="border">
+            <span>ID комнаты:</span>
+            <div id="room-id">352648</div>
+            <div id="conn-text">Подключиться к комнате:</div>
+            <form>
+                <input id="input-room" type="text">
+                <input id="button-room" type="button" value="Подключиться">
+            </form>
+            <div id="hod-text">Ход:</div>
+            <div id="player">Игрок</div>
+        </div>
+        <canvas id="tic-canvas" width="450px" height="450px">Ваш браузер не поддерживает эту технологию</canvas>
+        <div class="name-input">
+            <div id="input-your-name">Введи свое имя:</div>
+            <form>
+                <input id="input-name" type="text" placeholder="Игрок">
+                <input id="button-name" type="button" value="Подключиться">
+            </form>
+        </div>
+        <div class="msg">Тут будут выводиться сообщения от сервера</div>
+
+    </div>
+    <script src="js/tic.js"></script>
+</body>
+
+</html>
